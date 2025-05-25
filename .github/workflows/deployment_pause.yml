@@ -1,0 +1,32 @@
+name:  Code Freeze Checker
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  code-freeze-checker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: instalação de dependências
+        run: | 
+         sudo apt-get update
+         sudo apt-get  install -y curl
+         pip install pyyaml
+
+      - name: Baixar arquivos ddo GitLab
+        env:
+          GTILAB_TOKEN: ${{ secrets.GTILAB_TOKEN  }}
+        run: |
+          for file in config.yml main.py; do 
+            curl "https://gitlab.com/api/v4/projects/69760225/repository/files/${file}/raw?ref=main" \
+              -H "Authorization: Bearer ${GITLAB_TOKEN}" > $file
+          done
+
+      - name: Listar arquivos 
+        run: ls -l 
+        
+      - name: Executar main.py 
+        run: python main.py
+
