@@ -30,6 +30,5 @@ jobs:
       - name: Executar main.py 
         
         run: | 
-           cat main.py
-           python main.py
+            python main.py
 
