@@ -28,5 +28,8 @@ jobs:
         run: ls -l 
         
       - name: Executar main.py 
-        run: python main.py
+        
+        run: | 
+           cat main.py
+           python main.py
 
