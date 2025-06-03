@@ -30,6 +30,6 @@ jobs:
       - name: Executar main.py 
         
         run: | 
-            cat conconfig.yml
+            cat config.yml
             python main.py
 
